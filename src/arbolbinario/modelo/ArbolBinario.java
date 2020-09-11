@@ -72,6 +72,46 @@ public class ArbolBinario {
         }
     }
     
+     //imprimir preorden
+    
+    public ArrayList preOrden() {
+        ArrayList l=new ArrayList();
+        preOrden(raiz,l);
+        return l;
+    }
+
+    private void preOrden(Nodo reco, ArrayList l) {
+        if (reco != null) {
+            l.add(reco.getDato() + " ");
+            preOrden(reco.getIzquierda(),l);
+            preOrden(reco.getDerecha(),l);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void llenarArbol(String datos) throws ArbolBinarioException
     {
         String[] arrayDatos= datos.split(",");
