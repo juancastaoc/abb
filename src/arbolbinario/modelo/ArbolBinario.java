@@ -458,10 +458,61 @@ public class ArbolBinario {
     }
     
     
+    // Método cantidad nodos hoja
     
+    public String cantidadNodosHoja() {
+        cant = 0;
+        cantidadNodosHoja(raiz);
+        return ""+cant;
+    }
+      private void cantidadNodosHoja(Nodo reco) {
+        if (reco != null) {
+            if (reco.getIzquierda() == null && reco.getDerecha() == null) {
+                cant++;
+            }
+            cantidadNodosHoja(reco.getIzquierda());
+            cantidadNodosHoja(reco.getDerecha());
+        }
+    }
     
-    
+    // Método Menor Valor
       
+      public String menorValor() {
+        cant = 0;
+        menorValor(raiz);
+        return ""+cant;
+    }
+      
+     private void menorValor(Nodo reco) {
+         
+        if (reco != null) {
+            
+            while (reco.getIzquierda() != null) {
+                reco = reco.getIzquierda();
+            }
+            menorValor(reco.getIzquierda());
+        }        
+    }
+    
+    
+     // Método Mayor Valor
+      
+      public String mayorValor() {
+        cant = 0;
+        mayorValor(raiz);
+        return ""+cant;
+    }
+      
+     private void mayorValor(Nodo reco) {
+         
+        if (reco != null) {
+            
+            while (reco.getIzquierda() != null) {
+                reco = reco.getIzquierda();
+            }
+            menorValor(reco.getIzquierda());
+        }        
+    } 
       
       
       
