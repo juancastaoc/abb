@@ -184,6 +184,65 @@ public class ArbolBinario {
     }
     
     
+        
+     //Imprimir buscar y buscar padre
+    
+    public boolean buscar(int x) {
+        return (buscar(this.raiz, x));
+
+    }
+    
+       private boolean buscar(Nodo r, int x) {
+        if (r == null) {
+            return (false);
+        }
+        int compara = ((Comparable) r.getDato()).compareTo(x);
+        if (compara > 0) {
+            return (buscar(r.getIzquierda(), x));
+        } else if (compara < 0) {
+            return (buscar(r.getDerecha(), x));
+        } else {
+            return (true);
+        }
+    }
+
+    public int padre(int info) {
+        if (info == 0 || this.raiz == null) {
+            return 0;
+        }
+        Nodo x = padre(this.raiz, info);
+        if (x == null) {
+            return 0;
+        }
+        return (x.getDato());
+    }
+
+    private Nodo padre(Nodo x, int info) {
+        if (x == null) {
+            return null;
+        }
+        if ((x.getIzquierda()!= null && x.getIzquierda().getDato()==(info)) || (x.getDerecha()!= null && x.getDerecha().getDato()==(info))) {
+            return (x);
+        }
+        Nodo y = padre(x.getIzquierda(), info);
+        if (y == null) {
+            return (padre(x.getDerecha(), info));
+        } else {
+            return (y);
+        }
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
