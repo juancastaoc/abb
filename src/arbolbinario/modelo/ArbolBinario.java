@@ -371,7 +371,26 @@ public class ArbolBinario {
         return ("Valor eliminado: " + reco.getDato());
     }
     
+    // Método Borrar menor
     
+    public String borrarMenor() {
+        Nodo reco=raiz.getIzquierda();
+        if (raiz != null) {
+            if (raiz.getIzquierda()== null) {
+                raiz = raiz.getDerecha();
+            } else {
+                Nodo anterior = raiz;
+                reco = raiz.getIzquierda();
+                while (reco.getIzquierda()!= null) {
+                    anterior = reco;
+                    reco = reco.getIzquierda();
+                }
+                
+                anterior.setIzquierda(reco.getDerecha());
+            }
+        }
+        return ("Valor eliminado: " + reco.getDato());
+    }
     
     
     
