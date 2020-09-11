@@ -392,7 +392,22 @@ public class ArbolBinario {
         return ("Valor eliminado: " + reco.getDato());
     }
     
+    // Método cambiar valores
     
+    public boolean cambiar() {
+            cambiar(raiz, 1);
+            //System.out.println();
+            return true;
+    }
+
+    private void cambiar(Nodo reco, int nivel) {
+        if (reco != null) {
+            reco.setDato(reco.getDato() * 3);
+            cambiar(reco.getIzquierda(), nivel + 1);
+            //System.out.print(reco.getDato() + " Nivel: (" + nivel + ") ,");
+            cambiar(reco.getDerecha(), nivel + 1);
+        }
+    }
     
     
     
