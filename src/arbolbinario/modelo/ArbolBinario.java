@@ -409,7 +409,37 @@ public class ArbolBinario {
         }
     }
     
+    // Método obtener el número de ramas
     
+    int numeroRamas = 0;
+    public ArrayList<String>ObtenerRamaMayor(){
+    obtenernumeroRamas(this.raiz, 0);
+    return ObtenerRamamayor(this.raiz, 0, "", new ArrayList<String>());
+    }
+    public void obtenernumeroRamas(Nodo pivote, int contador) {
+        if (pivote != null) {
+            contador++;
+            obtenernumeroRamas(pivote.getIzquierda(), contador);
+            obtenernumeroRamas(pivote.getDerecha(), contador);
+        }
+        if (contador > this.numeroRamas) {
+            this.numeroRamas = contador;
+        }
+    }
+
+    public ArrayList<String> ObtenerRamamayor(Nodo pivote, int contador, String dato, ArrayList lista){
+        if (pivote != null ) {
+            dato+=pivote.getDato()+",";
+            contador ++;
+            lista=ObtenerRamamayor(pivote.getIzquierda(), contador, dato, lista);
+            lista=ObtenerRamamayor(pivote.getDerecha(), contador, dato, lista);
+            
+            if (contador == this.numeroRamas) {
+                lista.add(dato);
+            }
+        }
+        return lista;
+    }
     
     
     
