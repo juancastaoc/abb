@@ -441,7 +441,21 @@ public class ArbolBinario {
         return lista;
     }
     
+    // Método cantidad de nodos del arbol
     
+    public String cantidadNodos() {
+        cant = 0;
+        cantidadNodos(raiz);
+        return ""+cant;
+    }
+
+    private void cantidadNodos(Nodo reco) {
+        if (reco != null) {
+            cant++;
+            cantidadNodos(reco.getIzquierda());
+            cantidadNodos(reco.getDerecha());
+        }
+    }
     
     
     
