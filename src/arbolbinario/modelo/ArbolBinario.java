@@ -15,10 +15,29 @@ import java.util.logging.Logger;
  * @author carloaiza
  */
 public class ArbolBinario {
+    
+    
+     public int getCant() {
+        return cant;
+    }
+
+    public void setCant(int cant) {
+        this.cant = cant;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
 
     private Nodo raiz;
+    int cant;
+    int altura;
 
-    //public void adicionarNodo()
+     //public void adicionarNodo()
     public Nodo getRaiz() {
         return raiz;
     }
@@ -121,7 +140,27 @@ public class ArbolBinario {
         }
     }
     
+        //Imprimir vista por niveles ordenado
     
+     String[] niveles;
+    public ArrayList imprimirNivel() {
+        niveles = new String[altura + 1];
+        ArrayList l=new ArrayList();
+        imprimirNivel(raiz, 0);
+        for (int i = 0; i < niveles.length; i++) {
+            l.add(niveles[i] + " ");
+            System.out.println(niveles[i] + " ");
+        }
+        
+        return l;
+    }
+      public void imprimirNivel(Nodo pivote, int nivel2) {
+        if (pivote != null) {
+            niveles[nivel2] = pivote.getDato() + ", " + ((niveles[nivel2] != null) ? niveles[nivel2] : "");
+            imprimirNivel(pivote.getDerecha(), nivel2 + 1);
+            imprimirNivel(pivote.getIzquierda(), nivel2 + 1);
+        }
+    }
     
     
     
