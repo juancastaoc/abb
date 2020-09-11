@@ -105,7 +105,21 @@ public class ArbolBinario {
         }
     } 
     
+    //Imprimir vista por niveles
     
+    public ArrayList impNiveles() {
+        ArrayList l=new ArrayList();
+        impNiveles(raiz, 1,l);
+        return l;
+    }
+
+    private void impNiveles(Nodo reco, int nivel,ArrayList l) {
+        if (reco != null) {
+            impNiveles(reco.getIzquierda(), nivel + 1, l);
+            l.add(reco.getDato() + " Nivel: (" + nivel + ") ");
+            impNiveles(reco.getDerecha(), nivel + 1, l);
+        }
+    }
     
     
     
