@@ -350,7 +350,26 @@ public class ArbolBinario {
 
     }
     
+    // Método borrar mayor
     
+    public String borrarMayor() {
+        Nodo reco=raiz.getIzquierda();
+        if (raiz != null) {
+            if (raiz.getDerecha()== null) {
+                raiz = raiz.getIzquierda();
+            } else {
+                Nodo anterior = raiz;
+                reco = raiz.getDerecha();
+                while (reco.getDerecha()!= null) {
+                    anterior = reco;
+                    reco = reco.getDerecha();
+                }
+                
+                anterior.setDerecha(reco.getIzquierda());
+            }
+        }
+        return ("Valor eliminado: " + reco.getDato());
+    }
     
     
     
