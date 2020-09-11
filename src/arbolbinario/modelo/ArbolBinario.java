@@ -232,10 +232,123 @@ public class ArbolBinario {
         }
     } 
     
+    //Método para eliminar hojas
     
+     public void podar() {
+        podar(this.raiz);
+    }
+
+    private void podar(Nodo x) {
+        if (x == null) {
+            return;
+        }
+        if (this.esHoja(x.getIzquierda())) {
+            x.setIzquierda(null);
+        }
+        if (this.esHoja(x.getDerecha())) {
+            x.setDerecha(null);
+        }
+        podar(x.getIzquierda());
+        podar(x.getDerecha());
+    }
     
+     //Método para borrar cualquier nodo
     
+    public int borrar(int x) {
+        if (!this.buscar(x)) {
+            return 0;
+        }
+
+        Nodo z = borrar(this.raiz, x);
+        this.setRaiz(z);
+        return x;
+
+    }
+
+    private Nodo borrar(Nodo r, int x) {
+        if (r == null) {
+            return null;//<--Dato no encontrado		
+        }
+        int compara = ((Comparable) r.getDato()).compareTo(x);
+        if (compara > 0) {
+            r.setIzquierda(borrar(r.getIzquierda(), x));
+        } else if (compara < 0) {
+            r.setDerecha(borrar(r.getDerecha(), x));
+        } else {
+            System.out.println("Encontro el dato:" + x);
+            if (r.getIzquierda()!= null && r.getDerecha()!= null) {
+                /*
+                 *	Buscar el menor de los derechos y lo intercambia por el dato
+                 *	que desea borrar. La idea del algoritmo es que el dato a borrar 
+                 *	se coloque en una hoja o en un nodo que no tenga una de sus ramas.
+                 **/
+                Nodo cambiar = buscarMin(r.getDerecha());
+                int aux = cambiar.getDato();
+                cambiar.setDato(r.getDato());
+                r.setDato(aux);
+                r.setDerecha(borrar(r.getDerecha(), x));
+                System.out.println("2 ramas");
+            } else {
+                r = (r.getIzquierda()!= null) ? r.getIzquierda(): r.getDerecha();
+                System.out.println("Entro cuando le faltan ramas ");
+            }
+        }
+        return r;
+    }
     
+     // Método para buscar minimo
+    
+    private Nodo buscarMin(Nodo r) {
+        for (; r.getIzquierda()!= null; r = r.getIzquierda());
+        return (r);
+    }
+    
+    //Método Balance
+    
+    int subizq = 0;
+    int subder = 0;
+
+    public String imprimirBalance() {
+         subizq = 0;
+         subder = 0;
+
+        Balance(this.raiz, true, 0);
+        //System.out.println("lado Izquierdo " + subizq + " Lado Derecho " + subder);
+        if (subizq - subder == 0) {
+            return ("El balance es: 0 ");
+        } else if (subizq - subder == -1) {
+            return("El balance es -1, derecha");
+        } else if (subizq - subder == 1) {
+            return("El balance 1, izquierda");
+
+        } else {
+            return("No es balanceado.."
+                    + "porque es mas grande el lado "
+                    + ((subizq > subder) ? "Izquierdo" : "Derecho"));
+        }
+
+    }
+
+    public void Balance(Nodo reco, boolean lado, int i) {
+
+        if (reco != null) {
+
+            if (reco.getDerecha()== null && reco.getIzquierda()== null) {
+                if (lado) {
+                    subder = (i > subder) ? i : subder;
+                } else {
+                    subizq = (i > subizq) ? i : subizq;
+                }
+            }
+
+            Balance(reco.getDerecha(), lado, i + 1);
+            if (i == 0) {
+                lado = false;
+            }
+            Balance(reco.getIzquierda(), lado, i + 1);
+        }
+
+    }
     
     
     
