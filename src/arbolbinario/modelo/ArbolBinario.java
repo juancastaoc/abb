@@ -89,8 +89,21 @@ public class ArbolBinario {
     }
     
     
+      //imprimir postOrden
     
-    
+       public ArrayList postOrden() {
+        ArrayList l=new ArrayList();
+        postOrden(raiz,l);
+        return l;
+    }
+
+    private void postOrden(Nodo reco, ArrayList l) {
+        if (reco != null) {
+            postOrden(reco.getIzquierda(),l);
+            postOrden(reco.getDerecha(),l);
+            l.add(reco.getDato() + " ");
+        }
+    } 
     
     
     
