@@ -162,6 +162,26 @@ public class ArbolBinario {
         }
     }
     
+       //Imprimir arbol vista por hojas
+    public ArrayList getHojas() {
+        ArrayList l = new ArrayList();
+        getHojas(this.raiz, l);
+        return (l);
+    }
+
+    public void getHojas(Nodo r, ArrayList l) {
+        if (r != null) {
+            if (this.esHoja(r)) {
+                l.add(r.getDato());
+            }
+            getHojas(r.getIzquierda(), l);
+            getHojas(r.getDerecha(), l);
+        }
+
+    }
+    protected boolean esHoja(Nodo x) {
+        return (x != null && x.getIzquierda()== null && x.getDerecha()== null);
+    }
     
     
     
@@ -172,7 +192,21 @@ public class ArbolBinario {
     
     
     
-    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     
     
     
