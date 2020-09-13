@@ -232,6 +232,24 @@ public class ArbolBinario {
         }
     } 
     
+    //metodo para borrar por niveles
+    public void borrarNivel(int NivelDeseado){
+        ArrayList <Integer> nodosNivel=new ArrayList();
+        buscarNodosNivel(raiz, 1, nodosNivel, NivelDeseado);
+        for (int i = 0; i <nodosNivel.size(); i++) {
+            borrar(nodosNivel.get(i));
+        }
+    }
+    
+    private void buscarNodosNivel(Nodo reco, int nivel,ArrayList nodos, int nivelDeseado){
+        if(nivel==nivelDeseado && reco!=null){
+            nodos.add(reco.getDato());
+        }
+        else if(reco!=null){
+            buscarNodosNivel(reco.getIzquierda(), nivel+1, nodos, nivelDeseado);
+            buscarNodosNivel(reco.getDerecha(), nivel+1, nodos, nivelDeseado);
+        }
+    }
     //Método para eliminar hojas
     
      public void podar() {
@@ -409,6 +427,25 @@ public class ArbolBinario {
         }
     }
     
+    
+    // Método multiplicar valores
+    
+    public boolean multiplicar(int multiplicador) {
+            multiplicar(raiz,multiplicador);
+            //System.out.println();
+            return true;
+    }
+
+    private void multiplicar(Nodo reco, int multiplicador) {
+        if (reco != null) {
+            reco.setDato(reco.getDato()*multiplicador);
+            multiplicar(reco.getIzquierda(),multiplicador);
+            //System.out.print(reco.getDato() + " Nivel: (" + nivel + ") ,");
+            multiplicar(reco.getDerecha(),multiplicador);
+        }
+    }
+    
+    
     // Método obtener el número de ramas
     
     int numeroRamas = 0;
@@ -483,7 +520,7 @@ public class ArbolBinario {
         return ""+cant;
     }
       
-     private void menorValor(Nodo reco) {
+     public void menorValor(Nodo reco) {
          
         if (reco != null) {
             
