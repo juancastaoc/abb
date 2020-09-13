@@ -241,6 +241,7 @@ public class ArbolBinario {
         }
     }
     
+    
     private void buscarNodosNivel(Nodo reco, int nivel,ArrayList nodos, int nivelDeseado){
         if(nivel==nivelDeseado && reco!=null){
             nodos.add(reco.getDato());
@@ -438,7 +439,7 @@ public class ArbolBinario {
 
     private void multiplicar(Nodo reco, int multiplicador) {
         if (reco != null) {
-            reco.setDato(reco.getDato()*multiplicador);
+            reco.setDato(reco.getDato()* multiplicador);
             multiplicar(reco.getIzquierda(),multiplicador);
             //System.out.print(reco.getDato() + " Nivel: (" + nivel + ") ,");
             multiplicar(reco.getDerecha(),multiplicador);
@@ -514,30 +515,33 @@ public class ArbolBinario {
     
     // Método Menor Valor
       
-      public String menorValor() {
-        cant = 0;
-        menorValor(raiz);
-        return ""+cant;
+      public String menorValor() throws ArbolBinarioException {
+          
+        String menor = "0";
+        if (raiz == null){
+            return menor;
+        }
+        else{
+             ArrayList <String> inOrden = inOrden();
+             menor = inOrden.get(0);
+       
+        return menor;
+        }       
     }
-      
-     public void menorValor(Nodo reco) {
-         
-        if (reco != null) {
-            
-            while (reco.getIzquierda() != null) {
-                reco = reco.getIzquierda();
-            }
-            menorValor(reco.getIzquierda());
-        }        
-    }
-    
-    
+       
      // Método Mayor Valor
       
-      public String mayorValor() {
-        cant = 0;
-        mayorValor(raiz);
-        return ""+cant;
+      public String mayorValor() throws ArbolBinarioException {
+        String mayor = "0";
+        if (raiz == null){
+            return mayor;
+        }
+        else{
+             ArrayList <String> inOrden = inOrden();
+             mayor = inOrden.get(inOrden.size()-1);
+       
+        return mayor;
+        }
     }
       
      private void mayorValor(Nodo reco) {
@@ -547,7 +551,7 @@ public class ArbolBinario {
             while (reco.getIzquierda() != null) {
                 reco = reco.getIzquierda();
             }
-            menorValor(reco.getIzquierda());
+            
         }        
     } 
       
