@@ -55,39 +55,62 @@ public class Nodo {
     {
         return izquierda!=null && derecha!=null;
     }
-    
+     
     /*
-    public void adicionarNodo(int dato) throws ArbolBinarioException
+    Método para obtener el grado del nodo
+    @return int Numero de hijos
+*/
+    
+   public int obtenerGradoNodo()
+   {
+    int cont = 0;
+   if (this.izquierda != null)
+   {
+      cont++; 
+   } 
+    if (this.derecha != null)
     {
-        if(isLleno())
-        {
-            throw  new ArbolBinarioException("El nodo está lleno");
-        }
-        
-        if(dato< this.dato)
-        {
-            if(izquierda==null)
-            {
-                izquierda=new Nodo(dato);
-            }
-            else
-            {
-                throw new ArbolBinarioException("La izquierda está llena");
-            }
-        }
-        else if(dato > this.dato)
-        {
-            if(derecha ==null)
-            {
-                derecha=new Nodo(dato);
-            }
-            else
-            {
-                throw new ArbolBinarioException("La derecha está llena");
-            }    
-        }
-        else
-            throw new ArbolBinarioException("El dato ingresado ya existe");
+        cont++;
     }
-    */
+    return cont;
+   }
+   
+   /*
+   Método para calcular la altura de un nodo
+   @return int altura de mi hijo mas alto +1
+   */
+   
+   public int obtenerAlturaNodo()
+   {
+       if (isHoja())
+       {
+           return 0;
+       }
+       else
+       {
+           int altizq = 0, altder = 0;
+           if (this.izquierda != null)
+           {
+               altizq = izquierda.obtenerAlturaNodo();
+           }
+           if (this.derecha != null)
+           {
+               altder = derecha.obtenerAlturaNodo();
+           }
+           //Obtuve las alturas de mis hijos
+           // Operación ternaria
+   //        if (altizq > altder)
+   //       {
+   //        return altizq+1;
+   //       }
+   //       else
+   //       {
+   //       return altder+1;
+   //       }
+           
+           return altizq > altder ? altizq+1 : altder+1;
+           
+       }
+   
+   }
 }

@@ -13,8 +13,12 @@ import java.util.logging.Logger;
 /**
  *
  * @author carloaiza
+ * @author juancastano
+ * @author giovannifranco
  */
 public class ArbolBinario {
+    
+    
     
     
      public int getCant() {
@@ -142,23 +146,25 @@ public class ArbolBinario {
     
         //Imprimir vista por niveles ordenado
     
-     String[] niveles;
+     
     public ArrayList imprimirNivel() {
-        niveles = new String[altura + 1];
         ArrayList l=new ArrayList();
-        imprimirNivel(raiz, 0);
+        if (raiz != null)
+        {
+        String[] niveles = new String[raiz.obtenerAlturaNodo() + 1];        
+        imprimirNivel(raiz, 0, niveles);
         for (int i = 0; i < niveles.length; i++) {
             l.add(niveles[i] + " ");
             System.out.println(niveles[i] + " ");
         }
-        
+        }
         return l;
     }
-      public void imprimirNivel(Nodo pivote, int nivel2) {
+      public void imprimirNivel(Nodo pivote, int nivel2, String[] niveles) {
         if (pivote != null) {
             niveles[nivel2] = pivote.getDato() + ", " + ((niveles[nivel2] != null) ? niveles[nivel2] : "");
-            imprimirNivel(pivote.getDerecha(), nivel2 + 1);
-            imprimirNivel(pivote.getIzquierda(), nivel2 + 1);
+            imprimirNivel(pivote.getDerecha(), nivel2 + 1, niveles);
+            imprimirNivel(pivote.getIzquierda(), nivel2 + 1, niveles);
         }
     }
     
@@ -232,15 +238,22 @@ public class ArbolBinario {
         }
     } 
     
-    //metodo para borrar por niveles
-    public void borrarNivel(int NivelDeseado){
+    //Método para borrar por niveles  
+    
+    
+    public void borrarNivel(int NivelDeseado) throws ArbolBinarioException {                
+                if (NivelDeseado > getAltura()){
         ArrayList <Integer> nodosNivel=new ArrayList();
         buscarNodosNivel(raiz, 1, nodosNivel, NivelDeseado);
         for (int i = 0; i <nodosNivel.size(); i++) {
-            borrar(nodosNivel.get(i));
-        }
+            borrar(nodosNivel.get(i));        
+        }              
+      } 
+       else {
+                throw new ArbolBinarioException("No esta");
+            }
+                
     }
-    
     
     private void buscarNodosNivel(Nodo reco, int nivel,ArrayList nodos, int nivelDeseado){
         if(nivel==nivelDeseado && reco!=null){
@@ -249,6 +262,7 @@ public class ArbolBinario {
         else if(reco!=null){
             buscarNodosNivel(reco.getIzquierda(), nivel+1, nodos, nivelDeseado);
             buscarNodosNivel(reco.getDerecha(), nivel+1, nodos, nivelDeseado);
+            
         }
     }
     //Método para eliminar hojas
@@ -582,5 +596,7 @@ public class ArbolBinario {
         }
         
     }
+    
+    
 
 }
