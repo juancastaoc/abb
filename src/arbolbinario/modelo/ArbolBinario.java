@@ -572,23 +572,29 @@ public class ArbolBinario {
         }        
     } 
       
+            
+      // Método buscar Nodo
+     
+     private Nodo buscarNodo(int dato,Nodo nodo) throws ArbolBinarioException{
+        try {
+           if(nodo.getDato()==dato){
+            return nodo; 
+        }
+        else if(dato<nodo.getDato())
+            return buscarNodo(dato, nodo.getIzquierda());
+        else
+            return buscarNodo(dato, nodo.getDerecha()); 
+        } catch (Exception e) {
+            throw new ArbolBinarioException("No existe el dato en el arbol");
+        }
+    }
+      
+ public Nodo buscarNodoArbol(int dato) throws ArbolBinarioException{
+        return buscarNodo(dato, raiz);
+    }  
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    
-    
-    
-    
+                
     
     public void llenarArbol(String datos) throws ArbolBinarioException
     {
