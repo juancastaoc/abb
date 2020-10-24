@@ -241,7 +241,7 @@ public class ArbolBinario {
     //Método para borrar por niveles  
     
     
-    public void borrarNivel(int NivelDeseado) throws ArbolBinarioException {                
+    public void borrarNivel(int NivelDeseado) throws ArbolBinarioException, Exception {                
                 if (NivelDeseado > getAltura()){
         ArrayList <Integer> nodosNivel=new ArrayList();
         buscarNodosNivel(raiz, 1, nodosNivel, NivelDeseado);
@@ -255,9 +255,12 @@ public class ArbolBinario {
                 
     }
     
-    private void buscarNodosNivel(Nodo reco, int nivel,ArrayList nodos, int nivelDeseado){
+    private void buscarNodosNivel(Nodo reco, int nivel,ArrayList nodos, int nivelDeseado) throws Exception{
         if(nivel==nivelDeseado && reco!=null){
             nodos.add(reco.getDato());
+        }
+        else if(raiz.obtenerAlturaNodo()<nivelDeseado){
+            throw new Exception();
         }
         else if(reco!=null){
             buscarNodosNivel(reco.getIzquierda(), nivel+1, nodos, nivelDeseado);
@@ -569,23 +572,13 @@ public class ArbolBinario {
         }        
     } 
       
+
    
     
-    
-    
-    public void llenarArbol(String datos) throws ArbolBinarioException
-    {
-        String[] arrayDatos= datos.split(",");
-        for(String cadena: arrayDatos)
-        {
-            adicionarNodo(Integer.parseInt(cadena), raiz);
-        }
-        
-    }
-    
-    // Buscar Nodo
-    
-    private Nodo buscarNodo(int dato,Nodo nodo) throws ArbolBinarioException{
+         
+      // Método buscar Nodo
+     
+     private Nodo buscarNodo(int dato,Nodo nodo) throws ArbolBinarioException{
         try {
            if(nodo.getDato()==dato){
             return nodo; 
@@ -599,9 +592,22 @@ public class ArbolBinario {
         }
     }
       
-    public Nodo buscarNodoArbol(int dato) throws ArbolBinarioException{
+ public Nodo buscarNodoArbol(int dato) throws ArbolBinarioException{
         return buscarNodo(dato, raiz);
     }  
+      
+      
+                
+
     
+    public void llenarArbol(String datos) throws ArbolBinarioException
+    {
+        String[] arrayDatos= datos.split(",");
+        for(String cadena: arrayDatos)
+        {
+            adicionarNodo(Integer.parseInt(cadena), raiz);
+        }
+        
+    }
 
 }

@@ -8,6 +8,8 @@ package avl.modelo;
 /**
  *
  * @author carloaiza
+ * @author giovanni franco
+ * @author juan castaño
  */
 public class NodoAVL {
 
