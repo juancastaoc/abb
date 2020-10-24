@@ -97,5 +97,42 @@ public class NodoAVL {
     public String toString() {
         return dato + "\nAltura:" + getAltura() + ", \nFE:" + obtenerFactorEquilibrio();
     }
+    
+    public int obtenerAlturaNodo()
+   {
+       if (isHoja())
+       {
+           return 0;
+       }
+       else
+       {
+           int altizq = 0, altder = 0;
+           if (this.izquierda != null)
+           {
+               altizq = izquierda.obtenerAlturaNodo();
+           }
+           if (this.derecha != null)
+           {
+               altder = derecha.obtenerAlturaNodo();
+           }
+           return altizq > altder ? altizq+1 : altder+1;
+           
+       }
+   
+   }
+    
+    public int obtenerGradoNodo()
+   {
+    int cont = 0;
+   if (this.izquierda != null)
+   {
+      cont++; 
+   } 
+    if (this.derecha != null)
+    {
+        cont++;
+    }
+    return cont;
+   }
 
 }
