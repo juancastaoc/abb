@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 /**
  *
  * @author carloaiza
+ * @author giovanni franco
+ * @author juan castaño 
+ * 
  */
 public class ArbolBinarioAVL {
     
