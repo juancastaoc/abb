@@ -221,11 +221,14 @@ public class ArbolEne implements Serializable{
         for (int i = 0; i < mujeres.size(); i++) {
             edadMujeres+=mujeres.get(i).getDato().getEdad();
         }
-        edadHombres=edadHombres/hombres.size();
-        edadMujeres=edadMujeres/mujeres.size();
+        if(hombres.size()>0)
+            edadHombres=edadHombres/hombres.size();
+        if(mujeres.size()>0)
+            edadMujeres=edadMujeres/mujeres.size();
         promedio.add("Hombres: "+edadHombres);
         promedio.add("Mujeres: "+edadMujeres);
         return promedio;
+    
     }
     
 }
