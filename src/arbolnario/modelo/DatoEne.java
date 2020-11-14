@@ -10,16 +10,105 @@ import java.io.Serializable;
 /**
  *
  * @author giovanni
+ * @author juancastaño
  */
 public class DatoEne implements Serializable{
-    private String nombre;
-    private int id;
-    private int edad;
 
+    /**
+     * @return the genero
+     */
+    public String getGenero() {
+        return genero;
+    }
+
+    /**
+     * @param genero the genero to set
+     */
+    public void setGenero(String genero) {
+        this.genero = genero; 
+   }
+
+    /**
+     * @return the edad
+     */
+    public int getEdad() {
+        return edad;
+    }
+
+    /**
+     * @param edad the edad to set
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    /**
+     * @return the teletrabajo
+     */
+    public boolean isTeletrabajo() {
+        return teletrabajo;
+    }
+
+    /**
+     * @param teletrabajo the teletrabajo to set
+     */
+    public void setTeletrabajo(boolean teletrabajo) {
+        this.teletrabajo = teletrabajo;
+    }
+
+    /**
+     * @return the ciudad
+     */
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    /**
+     * @param ciudad the ciudad to set
+     */
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    /**
+     * @return the salario
+     */
+    public int getSalario() {
+        return salario;
+    }
+
+    /**
+     * @param salario the salario to set
+     */
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    /**
+     * @return the dependencia
+     */
+    public String getDependencia() {
+        return dependencia;
+    }
+
+    /**
+     * @param dependencia the dependencia to set
+     */
+    public void setDependencia(String dependencia) {
+        this.dependencia = dependencia;
+    }
+    private String nombre;
+    private String id;
+    private String ciudad;
+    private int salario;
+    private String dependencia;
+    private String genero;
+    private int edad;
+    private boolean teletrabajo;
     public DatoEne() {
     }
 
-    public DatoEne(int id) {
+    public DatoEne(String id) {
         this.id = id;    
     }
 
@@ -31,24 +120,11 @@ public class DatoEne implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-    
-    
-    
-    
-    
+    }    
 }

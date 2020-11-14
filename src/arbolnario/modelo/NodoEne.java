@@ -6,11 +6,13 @@
 package arbolnario.modelo;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  *
  * @author giovanni
+ * @author juancastaño
  */
 public class NodoEne implements Serializable {
     private DatoEne dato;
@@ -18,7 +20,11 @@ public class NodoEne implements Serializable {
 
     public NodoEne() {
     }
-
+    
+    public NodoEne(DatoEne dato){
+        this.dato = dato;
+        this.hijos = new LinkedList<NodoEne>();
+    }
     public NodoEne(DatoEne dato, List<NodoEne> hijos) {
         this.dato = dato;
         this.hijos = hijos;
